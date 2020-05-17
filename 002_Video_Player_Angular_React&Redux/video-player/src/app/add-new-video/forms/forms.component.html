@@ -1,0 +1,55 @@
+<!-- <div class="container">
+    <h1 mat-dialog-title> {{ data.title }}</h1>
+    <div mat-dialog-content>
+        <div class="container">
+            <form [formGroup]="frm" (ngSubmit)='save(frm)'>
+                <mat-form-field>
+                    <input matInput placeholder="Title" formControlName="title" class="person-input">
+                    <mat-hint align="end">{{frm.controls.title.value?.length || 0}}/10</mat-hint>
+                    <mat-error *ngIf="frm.controls.title.invalid">{{getNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+
+                <br />
+
+                <mat-form-field>
+                    <input matInput placeholder="URL" formControlName="url" class="person-input">
+                    <mat-hint align="end">{{frm.controls.url.value?.length || 0}}/10</mat-hint>
+                    <mat-error *ngIf="frm.controls.url.invalid">{{getLastNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+
+                <br />
+
+                <mat-form-field style="visibility: hidden; height: 0vh !important">
+                    <input matInput type="text" formControlName='id'>
+                </mat-form-field>
+
+                <div mat-dialog-actions align="end">
+                    <button mat-button [mat-dialog-close]>Cancelar</button>
+                    <button mat-raised-button color="primary" type="submit" class="btnSave" [disabled]="!frm.valid">
+                      <mat-icon aria-label="icon-button">save </mat-icon>
+                      <span>Save</span>
+                  </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->
+<form [formGroup]="frm" (ngSubmit)="update(frm)">
+
+    <div>
+        <label for="title">
+  Title
+</label>
+        <input id="title" type="text" formControlName="title">
+    </div>
+
+    <div>
+        <label for="url">
+  URL
+</label>
+        <input id="url" type="url" formControlName="url" [required]>
+    </div>
+
+    <button class="button" type="submit">update</button>
+
+</form>

@@ -1,0 +1,39 @@
+<!-- <div class="playListContainer">
+    <aside id="playList">
+        <header>
+            <h3>Play List</h3>
+        </header>
+        <ul>
+            <li value="assets/mv1.mp4" title="mv1.mp4" (click)="select('assets/mv1.mp4')"> 1.mv1.mp4</li>
+            <li value="assets/mv2.mp4" title="mv2.mp4" (click)="select('assets/mv2.mp4')"> 2.mv2.mp4</li>
+            <li value="assets/movie.mp4" title="movie.mp4" (click)="select('assets/movie.mp4')"> 3.movie.mp4</li>
+            <li value="assets/video.mp4" title="video.mp4" (click)="select('assets/video.mp4')"> 4.video.mp4</li>
+        </ul>
+
+    </aside>
+</div> -->
+<!-- <aside class="playList">
+    <header>
+        <h3>Play List</h3>
+    </header>
+    <ul>
+        <li value="assets/mv1.mp4" title="mv1.mp4" (click)="select('assets/mv1.mp4')"> 1.mv1.mp4</li>
+        <li value="assets/mv2.mp4" title="mv2.mp4" (click)="select('assets/mv2.mp4')"> 2.mv2.mp4</li>
+        <li value="assets/movie.mp4" title="movie.mp4" (click)="select('assets/movie.mp4')"> 3.movie.mp4</li>
+        <li value="assets/video.mp4" title="video.mp4" (click)="select('assets/video.mp4')"> 4.video.mp4</li>
+    </ul>
+
+</aside> -->
+
+<aside class="playList">
+    <header>
+        <h3>Play playList</h3>
+    </header>
+    <ul *ngFor="let video of videoList;index as videoId">
+        <li *ngIf="video.approved" [value]="video.title" [title]="video.title" (click)="select(video.url)"> {{video.title}}</li>
+    </ul>
+
+</aside>
+<!--
+<button (click)="getVideoData()">Get Data</button>
+<pre>{{videoList[2] | json}}</pre> -->
