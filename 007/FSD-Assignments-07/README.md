@@ -2,7 +2,7 @@
 Maven, Junit, Tomcat & GIT
 
 ### git
-
+https://github.com/lmaCode/fsd-assignments/tree/temp/007/FSD-Assignments-07
 
 ### Getting started
 1. create a new maven project：mvn archetype:generate -DgroupId=com.lipengwei.fsd -DartifactId=FSD-Assignments-07 -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
