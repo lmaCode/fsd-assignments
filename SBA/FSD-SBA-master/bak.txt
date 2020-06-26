@@ -1,0 +1,68 @@
+mvn clean package dockerfile:build
+
+docker images
+
+kubectl create namespace sba
+
+kubectl get ns
+
+kubectl apply -f k8s-registry.yaml
+kubectl expose deploy sba-registry --type="LoadBalancer" --namespace=sba
+
+kubectl apply -f k8s-gateway.yaml
+kubectl expose deploy sba-gateway --type="LoadBalancer" --namespace=sba
+
+kubectl apply -f k8s-security.yaml
+kubectl expose deploy sba-security --namespace=sba
+
+kubectl apply -f k8s-user.yaml
+kubectl expose deploy sba-user --namespace=sba
+
+
+kubectl apply -f k8s-mysql.yaml
+kubectl expose deploy sba-mysql --type="LoadBalancer" --namespace=sba
+
+docker exec -it xxx sh
+
+mysql -uroot -p123456
+
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+
+kubectl get all --namespace=sba
+
+
+
+docker image prune -f
+
+docker attach XXXXXXX
+docker exec -it XXXXXXX sh
+docker exec -it 2b994450ba90 /bin/bash
+
+PS C:\Users\PengweiLi\Downloads\FSD\FSD-SBA\registry> kubectl create namespace sba
+namespace/sba created
+PS C:\Users\PengweiLi\Downloads\FSD\FSD-SBA\registry> kubectl get ns
+NAME              STATUS   AGE
+default           Active   10d
+docker            Active   10d
+kube-node-lease   Active   10d
+kube-public       Active   10d
+kube-system       Active   10d
+sba               Active   22s
+
+
+
+kubectl get pods --namespace=sba
+
+kubectl get deploy --namespace=sba
+
+kubectl get services --namespace=sba
+
+
+kubectl expose deploy sba-registry --type="LoadBalancer" --namespace=sba
+
+
+kubectl apply -f k8s-mysql-deploy.yaml
+kubectl apply -f k8s-mysql-svc.yaml
+
+kubectl get svc --namespace=sba
+kubectl get pods --namespace=sba

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sba-frontend
+  namespace: sba
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sba-frontend
+  template:
+    metadata:
+      labels:
+        app: sba-frontend
+    spec:
+      containers:
+        - name: sba-frontend
+          image: registry.cn-hangzhou.aliyuncs.com/lipengwei/frontend:latest
+          imagePullPolicy: Never
+          ports:
+            - name: http-port
+              containerPort: 8080
+          env:
+            - name: spring_profiles_active
+              value: k8s

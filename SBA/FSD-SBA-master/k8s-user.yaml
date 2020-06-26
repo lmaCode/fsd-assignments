@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sba-user
+  namespace: sba
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sba-user
+  template:
+    metadata:
+      labels:
+        app: sba-user
+    spec:
+      containers:
+        - name: sba-user
+          image: registry.cn-hangzhou.aliyuncs.com/lipengwei/user:latest
+          imagePullPolicy: Never
+          ports:
+            - name: http-port
+              containerPort: 8006
+          env:
+            - name: spring_profiles_active
+              value: k8s

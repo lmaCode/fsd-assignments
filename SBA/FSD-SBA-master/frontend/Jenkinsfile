@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    environment {
+		dockerImage = ''
+    }
+    stages {
+    	stage('CheckOut Code'){
+         	steps{
+            	checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/lipengwei/FSD-SBA.git']]])
+            }
+        }
+        stage('Angular Build'){
+        	steps{
+                bat 'mkdir -p server/public'
+                bat 'npm install'
+                bat 'ng build --prod'
+        	}
+        }
+        stage('Image Build'){
+        	steps{
+        	    bat 'docker build -t registry.cn-hangzhou.aliyuncs.com/lipengwei/frontend:latest .'
+        	}
+        }
+//        stage('Image Push'){
+//        	steps{
+//        	    bat 'docker push registry.cn-hangzhou.aliyuncs.com/lipengwei/frontend:latest'
+//        	}
+//        }
+		stage('Deploy Image') {
+            steps{
+                script {
+                    bat 'kubectl apply -f deployment.yaml'
+                }
+            }
+        }
+//		stage('Remove Image') {
+//            steps{
+//                bat "docker rmi registry.cn-hangzhou.aliyuncs.com/lipengwei/frontend"
+//            }
+//        }
+   }
+}

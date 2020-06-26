@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sba-training
+  namespace: sba
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sba-training
+  template:
+    metadata:
+      labels:
+        app: sba-training
+    spec:
+      containers:
+        - name: sba-training
+          image: registry.cn-hangzhou.aliyuncs.com/lipengwei/training:latest
+          imagePullPolicy: Never
+          ports:
+            - name: http-port
+              containerPort: 8005
+          env:
+            - name: spring_profiles_active
+              value: k8s

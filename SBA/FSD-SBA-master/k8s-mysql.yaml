@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sba-mysql
+  namespace: sba
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sba-mysql
+  template:
+    metadata:
+      labels:
+        app: sba-mysql
+    spec:
+      containers:
+        - name: sba-mysql
+          image: mysql:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "123456"
