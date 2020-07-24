@@ -1,0 +1,1 @@
+java -jar target/registry-1.0-SNAPSHOT.jar

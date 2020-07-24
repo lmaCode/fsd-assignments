@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lipengwei.fsd.mapper.TPaymentMapper">
+  <resultMap id="BaseResultMap" type="com.lipengwei.fsd.entity.TPayment">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="training_id" jdbcType="VARCHAR" property="trainingId" />
+    <result column="skill_id" jdbcType="VARCHAR" property="skillId" />
+    <result column="skill_name" jdbcType="VARCHAR" property="skillName" />
+    <result column="mentor_id" jdbcType="VARCHAR" property="mentorId" />
+    <result column="mentor_name" jdbcType="VARCHAR" property="mentorName" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, training_id, skill_id, skill_name, mentor_id, mentor_name, amount
+  </sql>
+  <select id="selectByExample" parameterType="com.lipengwei.fsd.entity.TPaymentCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_payment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_payment
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_payment
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lipengwei.fsd.entity.TPaymentCriteria">
+    delete from t_payment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lipengwei.fsd.entity.TPayment">
+    insert into t_payment (id, training_id, skill_id, 
+      skill_name, mentor_id, mentor_name, 
+      amount)
+    values (#{id,jdbcType=VARCHAR}, #{trainingId,jdbcType=VARCHAR}, #{skillId,jdbcType=VARCHAR}, 
+      #{skillName,jdbcType=VARCHAR}, #{mentorId,jdbcType=VARCHAR}, #{mentorName,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lipengwei.fsd.entity.TPayment">
+    insert into t_payment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="trainingId != null">
+        training_id,
+      </if>
+      <if test="skillId != null">
+        skill_id,
+      </if>
+      <if test="skillName != null">
+        skill_name,
+      </if>
+      <if test="mentorId != null">
+        mentor_id,
+      </if>
+      <if test="mentorName != null">
+        mentor_name,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingId != null">
+        #{trainingId,jdbcType=VARCHAR},
+      </if>
+      <if test="skillId != null">
+        #{skillId,jdbcType=VARCHAR},
+      </if>
+      <if test="skillName != null">
+        #{skillName,jdbcType=VARCHAR},
+      </if>
+      <if test="mentorId != null">
+        #{mentorId,jdbcType=VARCHAR},
+      </if>
+      <if test="mentorName != null">
+        #{mentorName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lipengwei.fsd.entity.TPaymentCriteria" resultType="java.lang.Long">
+    select count(*) from t_payment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_payment
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trainingId != null">
+        training_id = #{record.trainingId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skillId != null">
+        skill_id = #{record.skillId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skillName != null">
+        skill_name = #{record.skillName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mentorId != null">
+        mentor_id = #{record.mentorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mentorName != null">
+        mentor_name = #{record.mentorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_payment
+    set id = #{record.id,jdbcType=VARCHAR},
+      training_id = #{record.trainingId,jdbcType=VARCHAR},
+      skill_id = #{record.skillId,jdbcType=VARCHAR},
+      skill_name = #{record.skillName,jdbcType=VARCHAR},
+      mentor_id = #{record.mentorId,jdbcType=VARCHAR},
+      mentor_name = #{record.mentorName,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lipengwei.fsd.entity.TPayment">
+    update t_payment
+    <set>
+      <if test="trainingId != null">
+        training_id = #{trainingId,jdbcType=VARCHAR},
+      </if>
+      <if test="skillId != null">
+        skill_id = #{skillId,jdbcType=VARCHAR},
+      </if>
+      <if test="skillName != null">
+        skill_name = #{skillName,jdbcType=VARCHAR},
+      </if>
+      <if test="mentorId != null">
+        mentor_id = #{mentorId,jdbcType=VARCHAR},
+      </if>
+      <if test="mentorName != null">
+        mentor_name = #{mentorName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lipengwei.fsd.entity.TPayment">
+    update t_payment
+    set training_id = #{trainingId,jdbcType=VARCHAR},
+      skill_id = #{skillId,jdbcType=VARCHAR},
+      skill_name = #{skillName,jdbcType=VARCHAR},
+      mentor_id = #{mentorId,jdbcType=VARCHAR},
+      mentor_name = #{mentorName,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.lipengwei.fsd.entity.TPaymentCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_payment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

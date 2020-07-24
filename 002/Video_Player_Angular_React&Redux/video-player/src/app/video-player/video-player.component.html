@@ -1,0 +1,22 @@
+<!-- <div class="mycontainer">
+    <div id="videoContainer">
+        <app-player></app-player>
+        <app-controls [myVideo]="myVideo"></app-controls>
+    </div>
+    <app-playlist (newItemEvent)="select($event)"></app-playlist>
+
+    <footer>
+        <p>&copy; 2020 - Pengwei Li</p>
+    </footer>
+</div> -->
+
+<app-player></app-player>
+<app-controls [myVideo]="myVideo"></app-controls>
+
+<app-playlist (newItemEvent)="select($event)"></app-playlist>
+<!-- <div class="navbar">
+    <ul>
+        <li><a [routerLink]="['']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Home</a></li>
+        <li><a [routerLink]="['add']" routerLinkActive="active">ADD</a></li>
+    </ul>
+</div> -->

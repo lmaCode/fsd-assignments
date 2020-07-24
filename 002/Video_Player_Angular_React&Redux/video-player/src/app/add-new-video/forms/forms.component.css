@@ -1,0 +1,48 @@
+.tableContainer {
+    margin: 0 auto;
+}
+
+.myTable {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 600px;
+}
+
+.table {
+    width: 600px;
+    height: 50%;
+    vertical-align: middle;
+    font-size: 17px;
+    margin-left: 15%;
+    margin-top: 5%;
+}
+
+.captiontext {
+    font-weight: bold;
+    font-size: 22px;
+    color: black;
+    height: 80px;
+}
+
+span {
+    color: red;
+}
+
+th {
+    text-align: center;
+    margin: 0 auto;
+    border: 1px solid #000;
+}
+
+tr {
+    margin: 0 auto;
+    border: 1px solid #000;
+}
+
+td {
+    font-size: 15px;
+    height: 30px;
+    margin: 0 auto;
+    border: 1px solid #000;
+}

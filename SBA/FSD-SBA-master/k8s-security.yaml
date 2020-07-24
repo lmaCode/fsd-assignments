@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sba-security
+  namespace: sba
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sba-security
+  template:
+    metadata:
+      labels:
+        app: sba-security
+    spec:
+      containers:
+        - name: sba-security
+          image: registry.cn-hangzhou.aliyuncs.com/lipengwei/security:latest
+          imagePullPolicy: Never
+          ports:
+            - name: http-port
+              containerPort: 8003
+          env:
+            - name: spring_profiles_active
+              value: k8s

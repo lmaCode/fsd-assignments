@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sba-search
+  namespace: sba
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sba-search
+  template:
+    metadata:
+      labels:
+        app: sba-search
+    spec:
+      containers:
+        - name: sba-search
+          image: registry.cn-hangzhou.aliyuncs.com/lipengwei/search:latest
+          imagePullPolicy: Never
+          ports:
+            - name: http-port
+              containerPort: 8002
+          env:
+            - name: spring_profiles_active
+              value: k8s

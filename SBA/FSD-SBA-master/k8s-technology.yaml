@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sba-technology
+  namespace: sba
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sba-technology
+  template:
+    metadata:
+      labels:
+        app: sba-technology
+    spec:
+      containers:
+        - name: sba-technology
+          image: registry.cn-hangzhou.aliyuncs.com/lipengwei/technology:latest
+          imagePullPolicy: Never
+          ports:
+            - name: http-port
+              containerPort: 8004
+          env:
+            - name: spring_profiles_active
+              value: k8s

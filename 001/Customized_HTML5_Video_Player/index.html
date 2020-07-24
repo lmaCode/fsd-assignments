@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Customized HTML5 Video Player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header style="text-align:center">
+        <h1>Customized HTML5 Video Player</h1>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div id="videoContainer" class="col-xs-6 col-sm-3">
+                <video id="video1" poster="img/cover.jpg" onended="afterEnd()">
+                        <source src="img/video.mp4" type="video/mp4">
+                        <source src="img/video.ogg" type="video/ogg">
+                        您的浏览器不支持 HTML5 video 标签。
+                    </video>
+                <br>
+                <div id="buttonList">
+                    <button id="play" class="btn glyphicon glyphicon-play" onclick="playAndPause()"></button>
+                    <button id="pause" class="btn glyphicon glyphicon-pause" onclick="playAndPause()" disabled="true"></button>
+                    <button id="volumeDown" class="btn glyphicon glyphicon-volume-down" onclick="volumeDown()"></button>
+                    <button id="volumeUp" class="btn glyphicon glyphicon-volume-up" onclick="volumeUp()"></button>
+                    <button id="volumeOff" class="btn glyphicon glyphicon-volume-off" onclick="volumeOff()"></button>
+                    <button id="rePlay" class="btn glyphicon glyphicon-repeat" onclick="rePlay()"></button>
+                    <button id="thumbsUp" class="btn glyphicon glyphicon-thumbs-up" onclick="like()"></button>
+                    <button id="thumbsDown" class="btn glyphicon glyphicon-thumbs-down" onclick="unlike()"></button>
+                    <button id="fullScreen" class="btn glyphicon glyphicon-fullscreen" onclick="fullScreen()"></button>
+                </div>
+                <div class="progress" style="margin-top: 4px;">
+                    <div id="prograssBar" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        <span class="sr-only">40% 完成</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix visible-xs"></div>
+
+            <div id="playListContainer" class="col-xs-6 col-sm-3">
+                <aside id="playList">
+                    <header>
+                        <h3>Play List</h3>
+                    </header>
+                    <ul>
+                        <li value="img/mv1.mp4" title="mv1.mp4" onclick="select('img/mv1.mp4')"> 1.mv1.mp4</li>
+                        <li value="img/mv2.mp4" title="mv2.mp4" onclick="select('img/mv2.mp4')"> 2.mv2.mp4</li>
+                        <li value="img/movie.mp4" title="movie.mp4" onclick="select('img/movie.mp4')"> 3.movie.mp4</li>
+                        <li value="img/video.mp4" title="video.mp4" onclick="select('img/video.mp4')"> 4.video.mp4</li>
+                    </ul>
+
+                </aside>
+            </div>
+
+        </div>
+        <footer>
+            <p>&copy; 2020 - Pengwei Li</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

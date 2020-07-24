@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    border: none;
+    padding: 0;
+    text-align: center;
+}
+
+body {
+    background: rgb(226, 224, 224);
+}
+
+.mycontainer {
+    background-color: rgb(194, 191, 191);
+    box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;
+    text-align: center;
+    width: 480px;
+    height: 400px;
+}
+
+#videoContainer {
+    width: 475px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 0px;
+}
+
+.myVideo {
+    /*height: 80vh;*/
+    background: black;
+    /*去掉这句将会使得video优先级失效*/
+    z-index: 99;
+    height: 325px;
+    width: 600px;
+    margin-bottom: 3px;
+    text-align: center;
+}
+
+.progress {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 600px;
+    margin: 0 auto
+}
+
+.videoBack {
+    background-color: #9494da;
+    box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;
+    text-align: center
+}
+
+.playListContainer {
+    width: 475px;
+    height: 335px;
+}
+
+.playListBack {
+    background-color: #ac76b9;
+    box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;
+}
+
+aside {
+    /* height: 600px;
+    width: 600px;
+    background: rgb(99, 98, 98);
+    opacity: 0.9; */
+    /*height: 80vh;*/
+    background: black;
+    /*去掉这句将会使得video优先级失效*/
+    z-index: 99;
+    height: 325px;
+    width: 600px;
+    margin: 0 auto
+}
+
+aside header h3 {
+    color: white;
+    margin-bottom: 10px;
+    text-align: center
+}
+
+aside ul {
+    background: rgb(99, 98, 98);
+    width: auto;
+    list-style: none;
+    text-align: left;
+    border-width: 5px;
+    border-top: 3px solid black;
+}
+
+aside ul li {
+    color: white;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: left
+}
+
+aside ul li:hover {
+    background-color: rgb(176, 192, 197);
+    color: rgb(76, 184, 157);
+    font-weight: bold;
+}

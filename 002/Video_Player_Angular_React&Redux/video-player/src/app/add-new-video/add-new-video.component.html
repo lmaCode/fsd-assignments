@@ -1,0 +1,61 @@
+<!-- <div class="newVideo">
+
+
+    <p>
+        add-new-video works!
+    </p>
+    <button ref='/add'>点我</button>
+</div> -->
+<h1>Add New Video</h1>
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+
+    <div>
+        <label for="title">
+    Title
+  </label>
+        <input id="title" type="text" formControlName="title">
+    </div>
+
+    <div>
+        <label for="url">
+    URL
+  </label>
+        <input id="url" type="url" formControlName="url" [required]>
+    </div>
+
+    <button class="button" type="submit">Add</button>
+
+</form>
+
+
+<!-- <div *ngFor="let item of videoList">
+    <span>{{ item.title }} </span>
+    <span>{{ item.url }}</span>
+</div> -->
+
+<div #myTable class="tableContainer">
+    <table class="myTable">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>URL</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Approve</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of videoList; index as itemId">
+                <td>{{item.id}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.url}}</td>
+                <td><button (click)="edit(item)">Edit</button></td>
+                <td>
+                    <button (click)="deleteVideo(item.id)">Delete</button>
+                </td>
+                <td><button [disabled]="item.approved">Approve</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
