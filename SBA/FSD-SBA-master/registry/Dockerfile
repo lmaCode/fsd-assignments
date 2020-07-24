@@ -2,7 +2,7 @@
 FROM openjdk:8-jdk-alpine
 
 # Add Maintainer Info
-MAINTAINER Bing <wujbow@cn.ibm.com>
+MAINTAINER Bing <lpwei@cn.ibm.com>
 
 # Set Env
 ENV TZ Asia/Shanghai

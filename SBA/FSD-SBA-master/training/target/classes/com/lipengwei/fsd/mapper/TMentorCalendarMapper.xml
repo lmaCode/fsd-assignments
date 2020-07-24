@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lipengwei.fsd.mapper.TMentorCalendarMapper">
+  <resultMap id="BaseResultMap" type="com.lipengwei.fsd.entity.TMentorCalendar">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="mentor_id" jdbcType="VARCHAR" property="mentorId" />
+    <result column="mentor_name" jdbcType="VARCHAR" property="mentorName" />
+    <result column="training_date" jdbcType="DATE" property="trainingDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, mentor_id, mentor_name, training_date
+  </sql>
+  <select id="selectByExample" parameterType="com.lipengwei.fsd.entity.TMentorCalendarCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_mentor_calendar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_mentor_calendar
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_mentor_calendar
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lipengwei.fsd.entity.TMentorCalendarCriteria">
+    delete from t_mentor_calendar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lipengwei.fsd.entity.TMentorCalendar">
+    insert into t_mentor_calendar (id, mentor_id, mentor_name, 
+      training_date)
+    values (#{id,jdbcType=VARCHAR}, #{mentorId,jdbcType=VARCHAR}, #{mentorName,jdbcType=VARCHAR}, 
+      #{trainingDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lipengwei.fsd.entity.TMentorCalendar">
+    insert into t_mentor_calendar
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="mentorId != null">
+        mentor_id,
+      </if>
+      <if test="mentorName != null">
+        mentor_name,
+      </if>
+      <if test="trainingDate != null">
+        training_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mentorId != null">
+        #{mentorId,jdbcType=VARCHAR},
+      </if>
+      <if test="mentorName != null">
+        #{mentorName,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingDate != null">
+        #{trainingDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lipengwei.fsd.entity.TMentorCalendarCriteria" resultType="java.lang.Long">
+    select count(*) from t_mentor_calendar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_mentor_calendar
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mentorId != null">
+        mentor_id = #{record.mentorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mentorName != null">
+        mentor_name = #{record.mentorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trainingDate != null">
+        training_date = #{record.trainingDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_mentor_calendar
+    set id = #{record.id,jdbcType=VARCHAR},
+      mentor_id = #{record.mentorId,jdbcType=VARCHAR},
+      mentor_name = #{record.mentorName,jdbcType=VARCHAR},
+      training_date = #{record.trainingDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lipengwei.fsd.entity.TMentorCalendar">
+    update t_mentor_calendar
+    <set>
+      <if test="mentorId != null">
+        mentor_id = #{mentorId,jdbcType=VARCHAR},
+      </if>
+      <if test="mentorName != null">
+        mentor_name = #{mentorName,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingDate != null">
+        training_date = #{trainingDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lipengwei.fsd.entity.TMentorCalendar">
+    update t_mentor_calendar
+    set mentor_id = #{mentorId,jdbcType=VARCHAR},
+      mentor_name = #{mentorName,jdbcType=VARCHAR},
+      training_date = #{trainingDate,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.lipengwei.fsd.entity.TMentorCalendarCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_mentor_calendar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
